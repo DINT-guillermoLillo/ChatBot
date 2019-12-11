@@ -21,5 +21,19 @@ namespace ChatBot
         {
             InitializeComponent();
         }
+
+        private void VentanaConfig_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            configuracion conf = new configuracion();
+
+            conf.Owner = this;
+
+            conf.ShowDialog();
+        }
+
+        private void VentanaConfig_CanExecuted(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
     }
 }

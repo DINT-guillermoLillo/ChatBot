@@ -1,0 +1,46 @@
+﻿<Window x:Class="ChatBot.configuracion"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ChatBot"
+        mc:Ignorable="d"
+        Title="Configuración" Height="180" Width="385" ResizeMode="NoResize" Topmost="True" ShowInTaskbar="False" Icon="./Recursos/configuracion.ico">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Padding" Value="24,0,24,0"/>
+            <Setter Property="Margin" Value="12,0,0,0"/>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin" Value="8"/>
+        </Style>
+    </Window.Resources>
+
+    <StackPanel>
+        <Grid x:Name="coloresGrid" Margin="8">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Grid.Row="0"> Color de fondo</TextBlock>
+            <ComboBox x:Name="colorfondoComboBox"  Grid.Column="1" Grid.Row="0"></ComboBox>
+
+            <TextBlock Grid.Column="0" Grid.Row="1"> Color del usuario</TextBlock>
+            <ComboBox x:Name="colorusuarioComboBox"  Grid.Column="1" Grid.Row="1"></ComboBox>
+
+            <TextBlock Grid.Column="0" Grid.Row="2">Color del robot</TextBlock>
+            <ComboBox x:Name="colorrobotComboBox" Grid.Column="1" Grid.Row="2"></ComboBox>
+        </Grid>
+
+        <StackPanel x:Name="botonesStackPanel" Orientation="Horizontal" HorizontalAlignment="Right" Margin="8">
+            <Button x:Name="aceptarButton" IsDefault="True">Aceptar</Button>
+            <Button x:Name="cancelarButton">Cancelar</Button>
+        </StackPanel>
+    </StackPanel>
+</Window>
