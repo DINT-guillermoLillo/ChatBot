@@ -70,6 +70,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BotonEnableConverter.cs" />
     <Compile Include="CustomCommands.cs" />
     <Compile Include="configuracion.xaml.cs">
       <DependentUpon>configuracion.xaml</DependentUpon>
@@ -80,6 +81,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mensaje.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

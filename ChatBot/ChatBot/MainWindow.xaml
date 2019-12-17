@@ -7,42 +7,62 @@
         xmlns:properties="clr-namespace:ChatBot.Properties"
         mc:Ignorable="d"
         Title="ChatBot" Height="450" Width="366">
+    
     <Window.Resources>
-        <Style TargetType="{x:Type Image}" x:Key="menuIconsStyle">
+        <local:BotonEnableConverter x:Key="botonEnableConverter"/>
+        <Style  x:Key="menuIconsStyle" TargetType="{x:Type Image}">
             <Setter Property="Width" Value="20"/>
         </Style>
     </Window.Resources>
+    
     <Window.CommandBindings>
         <CommandBinding
             Command="local:CustomCommands.VentanaConfig"
             Executed="VentanaConfig_Executed"
             CanExecute="VentanaConfig_CanExecuted"/>
+        <CommandBinding
+            Command="local:CustomCommands.Salir"
+            Executed="Salir_Executed"
+            CanExecute="Salir_CanExecuted"/>
+        <CommandBinding
+            Command="local:CustomCommands.GuardarConversacion"
+            Executed="GuardarConversacion_Executed"
+            CanExecute="GuardarConversacion_CanExecuted"/>
+        <CommandBinding
+            Command="local:CustomCommands.NuevaConversacion"
+            Executed="NuevaConversacion_Executed"
+            CanExecute="NuevaConversacion_CanExecuted"/>
+        <CommandBinding
+            Command="local:CustomCommands.Conexion"
+            Executed="Conexion_Executed"
+            CanExecute="Conexion_CanExecuted"/>
+
     </Window.CommandBindings>
     
     
     <DockPanel LastChildFill="True">
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_Archivo">
-                
-                <MenuItem Header="Nueva Conversación" InputGestureText="Ctrl+N">
+
+                <MenuItem Header="Nueva Conversación"       InputGestureText="Ctrl+N"       Command="local:CustomCommands.NuevaConversacion">
                     <MenuItem.Icon><Image Source="./Recursos/conversacion.ico"/></MenuItem.Icon>
                 </MenuItem>
-                
-                <MenuItem Header="Guardar Conversación..." InputGestureText="Ctrl+G">
+
+                <MenuItem Header="Guardar Conversación..."  InputGestureText="Ctrl+G"       Command="local:CustomCommands.GuardarConversacion">
                     <MenuItem.Icon><Image Source="./Recursos/guardar.ico"/></MenuItem.Icon>
                 </MenuItem>
                 
                 <Separator/>
-                <MenuItem Header="Salir" InputGestureText="Ctrl+S">
+                <MenuItem Header="Salir"                    InputGestureText="Ctrl+S"       Command="local:CustomCommands.Salir">
                     <MenuItem.Icon><Image Source="./Recursos/exit.ico"/></MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
 
             <MenuItem Header="_Herramientas">
-                <MenuItem Header="Configuración..." InputGestureText="Ctrl+C" Command="local:CustomCommands.VentanaConfig">
+                <MenuItem Header="Configuración..."         InputGestureText="Ctrl+C"       Command="local:CustomCommands.VentanaConfig">
                     <MenuItem.Icon><Image Source="./Recursos/configuracion.ico"/></MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="Comprobar conexión" InputGestureText="Ctrl+O">
+                <MenuItem Header="Comprobar conexión"       InputGestureText="Ctrl+O"       Command="local:CustomCommands.Conexion">
                     <MenuItem.Icon><Image Source="./Recursos/conexion.ico"/></MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
@@ -50,24 +70,24 @@
 
         <ToolBarTray DockPanel.Dock="Top">
             <ToolBar x:Name="accionesToolBar">
-                <Button x:Name="nuevoButton"            Command=""><Image Source="./Recursos/conversacion.ico"    Style="{StaticResource menuIconsStyle}"/></Button>
-                <Button x:Name="guardarButton"          Command=""><Image Source="./Recursos/guardar.ico"         Style="{StaticResource menuIconsStyle}"/></Button>
+                <Button x:Name="nuevoButton"            Command="local:CustomCommands.NuevaConversacion"><Image Source="./Recursos/conversacion.ico"    Style="{StaticResource menuIconsStyle}"/></Button>
+                <Button x:Name="guardarButton"          Command="local:CustomCommands.GuardarConversacion"><Image Source="./Recursos/guardar.ico"         Style="{StaticResource menuIconsStyle}"/></Button>
 
                 <Separator/>
                 <Button x:Name="configuracionButton"    Command="local:CustomCommands.VentanaConfig"><Image Source="./Recursos/configuracion.ico"  Style="{StaticResource menuIconsStyle}"/></Button>
-                <Button x:Name="conexionButton"         Command=""><Image Source="./Recursos/conexion.ico"        Style="{StaticResource menuIconsStyle}"/></Button>
+                <Button x:Name="conexionButton"         Command="local:CustomCommands.Conexion"><Image Source="./Recursos/conexion.ico"        Style="{StaticResource menuIconsStyle}"/></Button>
 
                 <Separator/>
-                <Button x:Name="exitButton"             Command=""><Image Source="./Recursos/exit.ico"            Style="{StaticResource menuIconsStyle}"/></Button>
+                <Button x:Name="exitButton"             Command="local:CustomCommands.Salir"><Image Source="./Recursos/exit.ico"            Style="{StaticResource menuIconsStyle}"/></Button>
             </ToolBar>
         </ToolBarTray>
 
         <DockPanel DockPanel.Dock="Bottom" LastChildFill="True">
-            <Button x:Name="enviarButton" DockPanel.Dock="Right" Width="30"><Image Source="./Recursos/send.ico"/></Button>
+            <Button x:Name="enviarButton" IsEnabled="{Binding ElementName=escribirTextBox, Path=Text, Converter={StaticResource botonEnableConverter}}" IsDefault="True" DockPanel.Dock="Right" Width="30" Click="enviarButton_Click"><Image Source="./Recursos/send.ico"/></Button>
             <TextBox x:Name="escribirTextBox"></TextBox>
         </DockPanel>
 
-        <ItemsControl Background="{Binding Source={x:Static properties:Settings.Default},Path=color}"></ItemsControl>
+        <ItemsControl x:Name="mensajesItemsControl" Background="{Binding Source={x:Static properties:Settings.Default},Path=color}"></ItemsControl>
     </DockPanel>
 
 </Window>
