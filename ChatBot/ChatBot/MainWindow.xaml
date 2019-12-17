@@ -13,6 +13,17 @@
         <Style  x:Key="menuIconsStyle" TargetType="{x:Type Image}">
             <Setter Property="Width" Value="20"/>
         </Style>
+        <DataTemplate DataType="{x:Type local:Mensaje}">
+            <Border Background="{Binding color}" BorderBrush="Black" BorderThickness="3" CornerRadius="5" HorizontalAlignment="{Binding alignment}" Margin="5" Padding="5">
+                <StackPanel>
+                    <TextBlock>
+                        <Image Source="{Binding icono}"  Style="{StaticResource menuIconsStyle}"/>
+                        <Run x:Name="mensajeemisorRun" Text="{Binding emisor}" FontWeight="Bold"/>
+                    </TextBlock>
+                    <TextBlock Text="{Binding texto}"/>
+                </StackPanel>
+            </Border>
+        </DataTemplate>
     </Window.Resources>
     
     <Window.CommandBindings>
@@ -86,8 +97,11 @@
             <Button x:Name="enviarButton" IsEnabled="{Binding ElementName=escribirTextBox, Path=Text, Converter={StaticResource botonEnableConverter}}" IsDefault="True" DockPanel.Dock="Right" Width="30" Click="enviarButton_Click"><Image Source="./Recursos/send.ico"/></Button>
             <TextBox x:Name="escribirTextBox"></TextBox>
         </DockPanel>
-
-        <ItemsControl x:Name="mensajesItemsControl" Background="{Binding Source={x:Static properties:Settings.Default},Path=color}"></ItemsControl>
+        
+        <ScrollViewer CanContentScroll="True" VerticalScrollBarVisibility="Auto">
+            <ItemsControl x:Name="mensajesItemsControl" ScrollViewer.VerticalScrollBarVisibility="Visible" Background="{Binding Source={x:Static properties:Settings.Default},Path=colorFondo}" ItemsSource="{Binding}"></ItemsControl>
+        </ScrollViewer>
+        
     </DockPanel>
 
 </Window>

@@ -26,24 +26,36 @@ namespace ChatBot.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("LightSkyBlue")]
-        public string color {
+        public string colorFondo {
             get {
-                return ((string)(this["color"]));
+                return ((string)(this["colorFondo"]));
             }
             set {
-                this["color"] = value;
+                this["colorFondo"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string Valor {
+        [global::System.Configuration.DefaultSettingValueAttribute("LightPink")]
+        public string colorUsuario {
             get {
-                return ((string)(this["Valor"]));
+                return ((string)(this["colorUsuario"]));
             }
             set {
-                this["Valor"] = value;
+                this["colorUsuario"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Wheat")]
+        public string colorRobot {
+            get {
+                return ((string)(this["colorRobot"]));
+            }
+            set {
+                this["colorRobot"] = value;
             }
         }
     }

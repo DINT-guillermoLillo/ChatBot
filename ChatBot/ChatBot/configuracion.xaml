@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ChatBot"
         mc:Ignorable="d"
-        Title="Configuración" Height="180" Width="385" ResizeMode="NoResize" Topmost="True" ShowInTaskbar="False" Icon="./Recursos/configuracion.ico">
+        Title="Configuración" Height="203.75" Width="385" ResizeMode="NoResize" Topmost="True" ShowInTaskbar="False" Icon="./Recursos/configuracion.ico">
+    
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="Padding" Value="24,0,24,0"/>
@@ -14,6 +15,13 @@
         <Style TargetType="TextBlock">
             <Setter Property="Margin" Value="8"/>
         </Style>
+
+        <DataTemplate x:Key="coloresDataTemplate">
+            <StackPanel Orientation="Horizontal">
+                <Rectangle Fill="{Binding Name}" MinWidth="30" MinHeight="30" Margin="0,0,5,0"/>
+                <TextBlock x:Name="nombrecolorTexBlock" Text="{Binding Name}"/>
+            </StackPanel>
+        </DataTemplate>
     </Window.Resources>
 
     <StackPanel>
@@ -29,18 +37,18 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Column="0" Grid.Row="0"> Color de fondo</TextBlock>
-            <ComboBox x:Name="colorfondoComboBox"  Grid.Column="1" Grid.Row="0"></ComboBox>
+            <ComboBox x:Name="colorfondoComboBox"  Grid.Column="1" Grid.Row="0" ItemsSource="{Binding}" ItemTemplate="{StaticResource coloresDataTemplate}"/>
 
             <TextBlock Grid.Column="0" Grid.Row="1"> Color del usuario</TextBlock>
-            <ComboBox x:Name="colorusuarioComboBox"  Grid.Column="1" Grid.Row="1"></ComboBox>
+            <ComboBox x:Name="colorusuarioComboBox"  Grid.Column="1" Grid.Row="1" ItemsSource="{Binding}" ItemTemplate="{StaticResource coloresDataTemplate}"/>
 
             <TextBlock Grid.Column="0" Grid.Row="2">Color del robot</TextBlock>
-            <ComboBox x:Name="colorrobotComboBox" Grid.Column="1" Grid.Row="2"></ComboBox>
+            <ComboBox x:Name="colorrobotComboBox" Grid.Column="1" Grid.Row="2" ItemsSource="{Binding}" ItemTemplate="{StaticResource coloresDataTemplate}"/>
         </Grid>
 
         <StackPanel x:Name="botonesStackPanel" Orientation="Horizontal" HorizontalAlignment="Right" Margin="8">
-            <Button x:Name="aceptarButton" IsDefault="True">Aceptar</Button>
-            <Button x:Name="cancelarButton">Cancelar</Button>
+            <Button x:Name="aceptarButton" IsDefault="True" Click="AceptarButton_Click">Aceptar</Button>
+            <Button x:Name="cancelarButton" Click="CancelarButton_Click">Cancelar</Button>
         </StackPanel>
     </StackPanel>
 </Window>

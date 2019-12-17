@@ -22,6 +22,27 @@ namespace ChatBot
         public configuracion()
         {
             InitializeComponent();
+
+            var colores = typeof(Colors).GetProperties();
+
+            colorfondoComboBox.ItemsSource = colores;
+            colorusuarioComboBox.ItemsSource = colores;
+            colorrobotComboBox.ItemsSource = colores;
+
+        }
+
+        private void CancelarButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void AceptarButton_Click(object sender, RoutedEventArgs e)
+        {
+            //Properties.Settings.Default.colorFondo = ;
+            //Properties.Settings.Default.Save();
+
+            Close();
+
         }
     }
 }
